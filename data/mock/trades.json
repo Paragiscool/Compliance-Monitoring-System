@@ -1,0 +1,522 @@
+[
+    {
+        "transaction_id": "TXN_770cc10b",
+        "trader_id": "TRADER_004",
+        "symbol": "AMC",
+        "quantity": 312.61,
+        "price": 64.59,
+        "timestamp": "2026-05-02T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_1ff2ab5e",
+        "trader_id": "TRADER_008",
+        "symbol": "AAPL",
+        "quantity": 216.62,
+        "price": 194.23,
+        "timestamp": "2026-05-20T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_edfbc852",
+        "trader_id": "TRADER_002",
+        "symbol": "GME",
+        "quantity": 985.75,
+        "price": 168.6,
+        "timestamp": "2026-04-30T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_e0981a76",
+        "trader_id": "TRADER_004",
+        "symbol": "AMC",
+        "quantity": 39.39,
+        "price": 248.85,
+        "timestamp": "2026-04-25T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_89cadcd1",
+        "trader_id": "TRADER_008",
+        "symbol": "AAPL",
+        "quantity": 382.17,
+        "price": 413.24,
+        "timestamp": "2026-05-19T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_aec3912b",
+        "trader_id": "TRADER_001",
+        "symbol": "AAPL",
+        "quantity": 258.5,
+        "price": 203.21,
+        "timestamp": "2026-04-28T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_5781cc30",
+        "trader_id": "TRADER_002",
+        "symbol": "GME",
+        "quantity": 507.05,
+        "price": 497.17,
+        "timestamp": "2026-05-09T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_845f50ae",
+        "trader_id": "TRADER_004",
+        "symbol": "AMZN",
+        "quantity": 465.41,
+        "price": 472.5,
+        "timestamp": "2026-05-05T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_85ac68c5",
+        "trader_id": "TRADER_008",
+        "symbol": "GME",
+        "quantity": 416.76,
+        "price": 251.23,
+        "timestamp": "2026-05-17T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_52c8fdab",
+        "trader_id": "TRADER_010",
+        "symbol": "GME",
+        "quantity": 714.9,
+        "price": 95.77,
+        "timestamp": "2026-05-05T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_ec5dc60e",
+        "trader_id": "TRADER_010",
+        "symbol": "TSLA",
+        "quantity": 864.75,
+        "price": 250.45,
+        "timestamp": "2026-05-14T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_1eb6d60e",
+        "trader_id": "TRADER_002",
+        "symbol": "AMC",
+        "quantity": 748.35,
+        "price": 265.55,
+        "timestamp": "2026-04-27T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_50d2637d",
+        "trader_id": "TRADER_002",
+        "symbol": "AMZN",
+        "quantity": 792.48,
+        "price": 140.55,
+        "timestamp": "2026-05-16T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_75585fcd",
+        "trader_id": "TRADER_007",
+        "symbol": "GOOGL",
+        "quantity": 810.21,
+        "price": 406.99,
+        "timestamp": "2026-04-24T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_a52534f8",
+        "trader_id": "TRADER_004",
+        "symbol": "AMC",
+        "quantity": 517.2,
+        "price": 96.43,
+        "timestamp": "2026-05-18T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_b29e5376",
+        "trader_id": "TRADER_008",
+        "symbol": "AMZN",
+        "quantity": 954.61,
+        "price": 168.36,
+        "timestamp": "2026-05-04T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_b43154bc",
+        "trader_id": "TRADER_002",
+        "symbol": "AMZN",
+        "quantity": 54.26,
+        "price": 491.68,
+        "timestamp": "2026-05-13T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_0a1a13b6",
+        "trader_id": "TRADER_003",
+        "symbol": "TSLA",
+        "quantity": 991.38,
+        "price": 269.61,
+        "timestamp": "2026-05-09T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_88aebfd7",
+        "trader_id": "TRADER_009",
+        "symbol": "GOOGL",
+        "quantity": 484.2,
+        "price": 266.24,
+        "timestamp": "2026-05-07T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_73645b87",
+        "trader_id": "TRADER_009",
+        "symbol": "AMC",
+        "quantity": 743.15,
+        "price": 461.24,
+        "timestamp": "2026-05-03T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_707153bd",
+        "trader_id": "TRADER_004",
+        "symbol": "MSFT",
+        "quantity": 752.3,
+        "price": 84.02,
+        "timestamp": "2026-04-28T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_7f21e574",
+        "trader_id": "TRADER_009",
+        "symbol": "GME",
+        "quantity": 600.89,
+        "price": 154.45,
+        "timestamp": "2026-05-01T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_1d862553",
+        "trader_id": "TRADER_008",
+        "symbol": "GOOGL",
+        "quantity": 621.25,
+        "price": 405.52,
+        "timestamp": "2026-05-18T15:57:09.816319",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_b2435176",
+        "trader_id": "TRADER_001",
+        "symbol": "TSLA",
+        "quantity": 932.48,
+        "price": 420.47,
+        "timestamp": "2026-05-01T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_cb637fbe",
+        "trader_id": "TRADER_008",
+        "symbol": "GME",
+        "quantity": 677.9,
+        "price": 487.53,
+        "timestamp": "2026-04-30T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_a81ea436",
+        "trader_id": "TRADER_001",
+        "symbol": "TSLA",
+        "quantity": 113.16,
+        "price": 207.38,
+        "timestamp": "2026-05-01T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_e61ae24c",
+        "trader_id": "TRADER_001",
+        "symbol": "AAPL",
+        "quantity": 364.49,
+        "price": 471.12,
+        "timestamp": "2026-05-20T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_d481fd07",
+        "trader_id": "TRADER_005",
+        "symbol": "GOOGL",
+        "quantity": 234.15,
+        "price": 266.15,
+        "timestamp": "2026-05-01T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_ccbc2dcc",
+        "trader_id": "TRADER_007",
+        "symbol": "GOOGL",
+        "quantity": 663.34,
+        "price": 303.32,
+        "timestamp": "2026-05-14T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_98c283a0",
+        "trader_id": "TRADER_006",
+        "symbol": "AMZN",
+        "quantity": 521.99,
+        "price": 210.79,
+        "timestamp": "2026-05-07T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_bd1e3f02",
+        "trader_id": "TRADER_001",
+        "symbol": "GME",
+        "quantity": 145.52,
+        "price": 121.5,
+        "timestamp": "2026-05-12T15:57:09.816319",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_dc6e6775",
+        "trader_id": "TRADER_004",
+        "symbol": "AMC",
+        "quantity": 642.12,
+        "price": 336.27,
+        "timestamp": "2026-05-01T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_d885dd1b",
+        "trader_id": "TRADER_008",
+        "symbol": "AMC",
+        "quantity": 568.53,
+        "price": 276.77,
+        "timestamp": "2026-05-18T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_9e7b57e6",
+        "trader_id": "TRADER_001",
+        "symbol": "MSFT",
+        "quantity": 842.4,
+        "price": 127.71,
+        "timestamp": "2026-05-05T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_efb170f1",
+        "trader_id": "TRADER_002",
+        "symbol": "MSFT",
+        "quantity": 89.04,
+        "price": 336.75,
+        "timestamp": "2026-05-10T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_3377bf8c",
+        "trader_id": "TRADER_008",
+        "symbol": "AMC",
+        "quantity": 80.69,
+        "price": 146.91,
+        "timestamp": "2026-05-17T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_4ba0f315",
+        "trader_id": "TRADER_007",
+        "symbol": "GOOGL",
+        "quantity": 350.33,
+        "price": 224.16,
+        "timestamp": "2026-05-14T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_9b993a59",
+        "trader_id": "TRADER_010",
+        "symbol": "AMZN",
+        "quantity": 487.61,
+        "price": 432.68,
+        "timestamp": "2026-05-11T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_9aa4584c",
+        "trader_id": "TRADER_002",
+        "symbol": "TSLA",
+        "quantity": 714.57,
+        "price": 115.92,
+        "timestamp": "2026-05-02T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_22f6be6a",
+        "trader_id": "TRADER_009",
+        "symbol": "TSLA",
+        "quantity": 540.86,
+        "price": 306.72,
+        "timestamp": "2026-05-02T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_02f1af96",
+        "trader_id": "TRADER_003",
+        "symbol": "AMZN",
+        "quantity": 881.73,
+        "price": 235.96,
+        "timestamp": "2026-04-25T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_cc69260b",
+        "trader_id": "TRADER_008",
+        "symbol": "GME",
+        "quantity": 65.13,
+        "price": 415.87,
+        "timestamp": "2026-04-24T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_f24de950",
+        "trader_id": "TRADER_005",
+        "symbol": "MSFT",
+        "quantity": 512.53,
+        "price": 84.19,
+        "timestamp": "2026-05-13T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_10e3979f",
+        "trader_id": "TRADER_010",
+        "symbol": "AMC",
+        "quantity": 674.69,
+        "price": 495.68,
+        "timestamp": "2026-04-26T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_e443e12f",
+        "trader_id": "TRADER_006",
+        "symbol": "GOOGL",
+        "quantity": 448.98,
+        "price": 135.25,
+        "timestamp": "2026-04-24T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_5f7da27b",
+        "trader_id": "TRADER_001",
+        "symbol": "GOOGL",
+        "quantity": 663.81,
+        "price": 312.94,
+        "timestamp": "2026-05-23T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_4df38e99",
+        "trader_id": "TRADER_009",
+        "symbol": "TSLA",
+        "quantity": 407.4,
+        "price": 295.38,
+        "timestamp": "2026-05-15T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_8f2e9d0a",
+        "trader_id": "TRADER_006",
+        "symbol": "MSFT",
+        "quantity": 99.75,
+        "price": 53.98,
+        "timestamp": "2026-04-27T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_f91aec64",
+        "trader_id": "TRADER_004",
+        "symbol": "AMC",
+        "quantity": 567.91,
+        "price": 386.27,
+        "timestamp": "2026-04-28T15:57:09.817327",
+        "order_type": "LIMIT",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_6050f9a4",
+        "trader_id": "TRADER_001",
+        "symbol": "AMZN",
+        "quantity": 280.21,
+        "price": 372.85,
+        "timestamp": "2026-05-20T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_892021a4",
+        "trader_id": "TRADER_007",
+        "symbol": "TSLA",
+        "quantity": 500.0,
+        "price": 200.0,
+        "timestamp": "2026-05-22T15:57:09.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    },
+    {
+        "transaction_id": "TXN_64c6a3f0",
+        "trader_id": "TRADER_007",
+        "symbol": "TSLA",
+        "quantity": -500.0,
+        "price": 200.5,
+        "timestamp": "2026-05-22T15:57:14.817327",
+        "order_type": "MARKET",
+        "asset_class": "EQUITY"
+    }
+]

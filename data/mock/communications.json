@@ -1,0 +1,342 @@
+[
+    {
+        "comm_id": "MSG_c823198f",
+        "sender_id": "EMP_004",
+        "receiver_ids": [
+            "CLIENT_018"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-11T15:57:09.832337",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_4133eee7",
+        "sender_id": "EMP_009",
+        "receiver_ids": [
+            "CLIENT_013"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-03T15:57:09.832337",
+        "content": "Thank you for the update."
+    },
+    {
+        "comm_id": "MSG_4e7f05dc",
+        "sender_id": "EMP_003",
+        "receiver_ids": [
+            "CLIENT_013"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-20T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_5ed80d69",
+        "sender_id": "EMP_002",
+        "receiver_ids": [
+            "CLIENT_014"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-23T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_e954675a",
+        "sender_id": "EMP_009",
+        "receiver_ids": [
+            "CLIENT_016"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-23T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_97645e20",
+        "sender_id": "EMP_012",
+        "receiver_ids": [
+            "CLIENT_007"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-07T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_3b40ef92",
+        "sender_id": "EMP_006",
+        "receiver_ids": [
+            "CLIENT_001"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-16T15:57:09.832337",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_4f775ce0",
+        "sender_id": "EMP_003",
+        "receiver_ids": [
+            "CLIENT_014"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-28T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_c572f9f1",
+        "sender_id": "EMP_013",
+        "receiver_ids": [
+            "CLIENT_002"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-12T15:57:09.832337",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_8066db3c",
+        "sender_id": "EMP_009",
+        "receiver_ids": [
+            "CLIENT_009"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-06T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_47c5605f",
+        "sender_id": "EMP_006",
+        "receiver_ids": [
+            "CLIENT_018"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-01T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_73827c96",
+        "sender_id": "EMP_012",
+        "receiver_ids": [
+            "CLIENT_009"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-21T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_f1fa4968",
+        "sender_id": "EMP_002",
+        "receiver_ids": [
+            "CLIENT_008"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-10T15:57:09.832337",
+        "content": "Can we schedule a call to discuss the portfolio?"
+    },
+    {
+        "comm_id": "MSG_735a24f2",
+        "sender_id": "EMP_007",
+        "receiver_ids": [
+            "CLIENT_011"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-05T15:57:09.832337",
+        "content": "Thank you for the update."
+    },
+    {
+        "comm_id": "MSG_1ac18976",
+        "sender_id": "EMP_010",
+        "receiver_ids": [
+            "CLIENT_005"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-23T15:57:09.832337",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_ea87596b",
+        "sender_id": "EMP_012",
+        "receiver_ids": [
+            "CLIENT_001"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-01T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_ac5656aa",
+        "sender_id": "EMP_011",
+        "receiver_ids": [
+            "CLIENT_014"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-30T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_37a96070",
+        "sender_id": "EMP_004",
+        "receiver_ids": [
+            "CLIENT_009"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-11T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_cca87db9",
+        "sender_id": "EMP_013",
+        "receiver_ids": [
+            "CLIENT_011"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-10T15:57:09.832337",
+        "content": "Thank you for the update."
+    },
+    {
+        "comm_id": "MSG_4d1791e5",
+        "sender_id": "EMP_009",
+        "receiver_ids": [
+            "CLIENT_018"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-28T15:57:09.832337",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_137b8471",
+        "sender_id": "EMP_002",
+        "receiver_ids": [
+            "CLIENT_001"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-23T15:57:09.832337",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_5cf6178c",
+        "sender_id": "EMP_004",
+        "receiver_ids": [
+            "CLIENT_015"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-29T15:57:09.832337",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_06c28187",
+        "sender_id": "EMP_005",
+        "receiver_ids": [
+            "CLIENT_008"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-01T15:57:09.832337",
+        "content": "Can we schedule a call to discuss the portfolio?"
+    },
+    {
+        "comm_id": "MSG_11b8a3df",
+        "sender_id": "EMP_003",
+        "receiver_ids": [
+            "CLIENT_010"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-16T15:57:09.833349",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_2bc06df9",
+        "sender_id": "EMP_001",
+        "receiver_ids": [
+            "CLIENT_019"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-19T15:57:09.833349",
+        "content": "Please find the attached Q3 performance report."
+    },
+    {
+        "comm_id": "MSG_0dd16ab8",
+        "sender_id": "EMP_002",
+        "receiver_ids": [
+            "CLIENT_012"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-26T15:57:09.833349",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_96e8975f",
+        "sender_id": "EMP_004",
+        "receiver_ids": [
+            "CLIENT_008"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-01T15:57:09.833349",
+        "content": "Thank you for the update."
+    },
+    {
+        "comm_id": "MSG_a0386e8b",
+        "sender_id": "EMP_011",
+        "receiver_ids": [
+            "CLIENT_006"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-14T15:57:09.833349",
+        "content": "Can we schedule a call to discuss the portfolio?"
+    },
+    {
+        "comm_id": "MSG_ffa7766d",
+        "sender_id": "EMP_001",
+        "receiver_ids": [
+            "CLIENT_010"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-04-24T15:57:09.833349",
+        "content": "I need to update my address on file."
+    },
+    {
+        "comm_id": "MSG_862d038b",
+        "sender_id": "EMP_013",
+        "receiver_ids": [
+            "CLIENT_019"
+        ],
+        "channel": "CHAT",
+        "timestamp": "2026-05-11T15:57:09.833349",
+        "content": "What are your thoughts on the current market trends?"
+    },
+    {
+        "comm_id": "MSG_68646c96",
+        "sender_id": "EMP_002",
+        "receiver_ids": [
+            "CLIENT_010"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-19T15:57:09.833349",
+        "content": "I can guarantee a 15% return by next quarter if you invest now."
+    },
+    {
+        "comm_id": "MSG_eb99f20a",
+        "sender_id": "EMP_013",
+        "receiver_ids": [
+            "CLIENT_016"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-22T15:57:09.833349",
+        "content": "There's absolutely no risk with this product, it's a sure thing."
+    },
+    {
+        "comm_id": "MSG_a80e4536",
+        "sender_id": "EMP_009",
+        "receiver_ids": [
+            "CLIENT_014"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-21T15:57:09.833349",
+        "content": "I heard from a friend at the board that they are acquiring TechCorp next week. We should buy."
+    },
+    {
+        "comm_id": "MSG_91ede662",
+        "sender_id": "EMP_008",
+        "receiver_ids": [
+            "CLIENT_015"
+        ],
+        "channel": "EMAIL",
+        "timestamp": "2026-05-19T15:57:09.833349",
+        "content": "If you don't sign today, the offer is gone forever. You're going to lose everything."
+    }
+]

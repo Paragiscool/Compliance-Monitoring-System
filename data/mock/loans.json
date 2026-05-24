@@ -1,0 +1,212 @@
+[
+    {
+        "application_id": "LOAN_d811acfc",
+        "applicant_id": "CUST_0001",
+        "loan_amount": 267669.37,
+        "interest_rate": 4.38,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 592,
+        "status": "PENDING",
+        "timestamp": "2026-04-26T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_d00a41f4",
+        "applicant_id": "CUST_0002",
+        "loan_amount": 255616.87,
+        "interest_rate": 3.58,
+        "purpose": "BUSINESS",
+        "risk_score": 598,
+        "status": "APPROVED",
+        "timestamp": "2026-05-06T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_0f8b6b66",
+        "applicant_id": "CUST_0003",
+        "loan_amount": 52676.99,
+        "interest_rate": 5.5,
+        "purpose": "MORTGAGE",
+        "risk_score": 337,
+        "status": "REJECTED",
+        "timestamp": "2026-05-23T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_2964d705",
+        "applicant_id": "CUST_0004",
+        "loan_amount": 427927.45,
+        "interest_rate": 11.08,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 439,
+        "status": "APPROVED",
+        "timestamp": "2026-04-25T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_0c17062f",
+        "applicant_id": "CUST_0005",
+        "loan_amount": 155647.12,
+        "interest_rate": 7.37,
+        "purpose": "BUSINESS",
+        "risk_score": 730,
+        "status": "PENDING",
+        "timestamp": "2026-05-16T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_81e96129",
+        "applicant_id": "CUST_0006",
+        "loan_amount": 424555.67,
+        "interest_rate": 11.66,
+        "purpose": "AUTO",
+        "risk_score": 682,
+        "status": "PENDING",
+        "timestamp": "2026-05-23T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_98abb671",
+        "applicant_id": "CUST_0007",
+        "loan_amount": 154947.66,
+        "interest_rate": 7.06,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 833,
+        "status": "APPROVED",
+        "timestamp": "2026-05-15T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_842ae031",
+        "applicant_id": "CUST_0008",
+        "loan_amount": 98230.51,
+        "interest_rate": 5.02,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 315,
+        "status": "PENDING",
+        "timestamp": "2026-05-11T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_dfdb25af",
+        "applicant_id": "CUST_0009",
+        "loan_amount": 110011.9,
+        "interest_rate": 11.79,
+        "purpose": "BUSINESS",
+        "risk_score": 612,
+        "status": "APPROVED",
+        "timestamp": "2026-05-06T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_b984877d",
+        "applicant_id": "CUST_0010",
+        "loan_amount": 343564.65,
+        "interest_rate": 4.39,
+        "purpose": "AUTO",
+        "risk_score": 399,
+        "status": "APPROVED",
+        "timestamp": "2026-05-08T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_3798f284",
+        "applicant_id": "CUST_0011",
+        "loan_amount": 274956.82,
+        "interest_rate": 10.96,
+        "purpose": "AUTO",
+        "risk_score": 725,
+        "status": "REJECTED",
+        "timestamp": "2026-05-06T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_cee81a86",
+        "applicant_id": "CUST_0012",
+        "loan_amount": 300757.98,
+        "interest_rate": 7.83,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 446,
+        "status": "APPROVED",
+        "timestamp": "2026-04-28T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_bec28253",
+        "applicant_id": "CUST_0013",
+        "loan_amount": 206265.26,
+        "interest_rate": 8.11,
+        "purpose": "AUTO",
+        "risk_score": 707,
+        "status": "REJECTED",
+        "timestamp": "2026-05-10T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_e8719318",
+        "applicant_id": "CUST_0014",
+        "loan_amount": 272307.29,
+        "interest_rate": 9.29,
+        "purpose": "MORTGAGE",
+        "risk_score": 810,
+        "status": "APPROVED",
+        "timestamp": "2026-05-21T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_076a93be",
+        "applicant_id": "CUST_0015",
+        "loan_amount": 74668.45,
+        "interest_rate": 10.88,
+        "purpose": "PERSONAL",
+        "risk_score": 322,
+        "status": "REJECTED",
+        "timestamp": "2026-05-11T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_915b5468",
+        "applicant_id": "CUST_0016",
+        "loan_amount": 191238.69,
+        "interest_rate": 10.33,
+        "purpose": "AUTO",
+        "risk_score": 436,
+        "status": "REJECTED",
+        "timestamp": "2026-04-26T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_ce1b7447",
+        "applicant_id": "CUST_0017",
+        "loan_amount": 38867.64,
+        "interest_rate": 3.63,
+        "purpose": "MORTGAGE",
+        "risk_score": 355,
+        "status": "PENDING",
+        "timestamp": "2026-05-05T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_bf981ff3",
+        "applicant_id": "CUST_0018",
+        "loan_amount": 312579.4,
+        "interest_rate": 9.62,
+        "purpose": "REAL_ESTATE_INVESTMENT",
+        "risk_score": 322,
+        "status": "PENDING",
+        "timestamp": "2026-05-14T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_ca3b3a97",
+        "applicant_id": "CUST_0019",
+        "loan_amount": 389509.61,
+        "interest_rate": 7.53,
+        "purpose": "AUTO",
+        "risk_score": 843,
+        "status": "APPROVED",
+        "timestamp": "2026-04-27T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_a7e7c085",
+        "applicant_id": "CUST_0020",
+        "loan_amount": 399051.9,
+        "interest_rate": 8.3,
+        "purpose": "MORTGAGE",
+        "risk_score": 652,
+        "status": "PENDING",
+        "timestamp": "2026-04-24T15:57:09.828342"
+    },
+    {
+        "application_id": "LOAN_09648622",
+        "applicant_id": "CUST_9999",
+        "loan_amount": 2500000.0,
+        "interest_rate": 2.5,
+        "purpose": "BUSINESS",
+        "risk_score": 450,
+        "status": "APPROVED",
+        "timestamp": "2026-05-07T15:57:09.828342"
+    }
+]
