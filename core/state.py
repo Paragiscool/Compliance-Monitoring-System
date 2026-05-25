@@ -10,6 +10,8 @@ class ComplianceState(TypedDict):
     current_transaction: Optional[Dict[str, Any]]
     current_loan: Optional[Dict[str, Any]]
     current_communication: Optional[Dict[str, Any]]
+    raw_transactions: List[Dict[str, Any]]
+    raw_communications: List[Dict[str, Any]]
     
     # Agent Outputs
     active_rules: List[Dict[str, Any]]

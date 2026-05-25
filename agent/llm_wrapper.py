@@ -50,7 +50,7 @@ class RobustLLM:
             role:        One of 'planner', 'executor', 'synthesizer', 'verifier', 'default'.
                          When set, overrides temperature and enforces a max_tokens cap.
         """
-        self.model_name = "gemini-2.5-flash"
+        self.model_name = "gemini-3.1-flash-lite"
         self.role = role
 
         # Pick config from role table, fall back to explicit temperature if role unknown

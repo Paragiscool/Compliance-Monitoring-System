@@ -1,0 +1,10 @@
+[
+    {
+        "comm_id": "MSG_SPOUSE_01",
+        "sender_id": "SPOUSE_001",
+        "receiver_ids": ["EXTERNAL_BROKER"],
+        "channel": "SMS",
+        "timestamp": "2026-05-25T14:28:00",
+        "content": "Hey, TRADER_007 just gave me the nod. Go heavy on NVDA right now before the earnings call."
+    }
+]

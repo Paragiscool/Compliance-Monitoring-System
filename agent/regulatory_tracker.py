@@ -10,10 +10,25 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CHROMA_DIR = os.path.join(BASE_DIR, "chroma_db")
 
-_OPENAI_KEY_PRESENT = (
-    bool(os.getenv("OPENAI_API_KEY"))
-    and os.getenv("OPENAI_API_KEY") != "your_openai_api_key_here"
+_GOOGLE_KEY_PRESENT = (
+    bool(os.getenv("GOOGLE_API_KEY"))
+    and os.getenv("GOOGLE_API_KEY") != "your_google_api_key_here"
 )
+
+def get_false_positives_db():
+    if not _GOOGLE_KEY_PRESENT:
+        return None
+    from langchain_community.vectorstores import Chroma
+    from langchain_google_genai import GoogleGenerativeAIEmbeddings
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/gemini-embedding-001",
+        google_api_key=os.getenv("GOOGLE_API_KEY"),
+    )
+    return Chroma(
+        persist_directory=CHROMA_DIR, 
+        embedding_function=embeddings,
+        collection_name="false_positives"
+    )
 
 
 def get_regulatory_tracker_node():
@@ -25,9 +40,9 @@ def get_regulatory_tracker_node():
 
     retriever = None  # Safe default
 
-    if not _OPENAI_KEY_PRESENT:
+    if not _GOOGLE_KEY_PRESENT:
         print(
-            "WARNING [RegulatoryTracker]: OPENAI_API_KEY is not set. "
+            "WARNING [RegulatoryTracker]: GOOGLE_API_KEY is not set. "
             "ChromaDB retrieval will be skipped. Rules will be empty."
         )
     elif not os.path.exists(CHROMA_DIR):
@@ -38,9 +53,12 @@ def get_regulatory_tracker_node():
     else:
         # Only import heavy dependencies when we know they will be used
         from langchain_community.vectorstores import Chroma
-        from langchain_openai import OpenAIEmbeddings
+        from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
-        embeddings = OpenAIEmbeddings()
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/gemini-embedding-001",
+            google_api_key=os.getenv("GOOGLE_API_KEY"),
+        )
         vectorstore = Chroma(
             persist_directory=CHROMA_DIR, embedding_function=embeddings
         )

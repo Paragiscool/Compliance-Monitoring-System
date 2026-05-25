@@ -1,0 +1,21 @@
+Scenario ID,Description,Expected,Actual,Pass
+SEC_001,Spouse tips off trader via SMS before earnings call.,CRITICAL,CRITICAL,True
+SEC_002,CEO texts board member on Signal about unannounced merger.,CRITICAL,CRITICAL,True
+SEC_003,Broker guarantees 100% return on a penny stock via WhatsApp.,HIGH,HIGH,True
+SEC_004,Trader brags on Telegram about front-running a massive client order.,CRITICAL,CRITICAL,True
+SEC_005,Employee shares inside information about a clinical trial.,HIGH,HIGH,True
+FINRA_001,Classic wash trade: Buy and sell same asset within 3 seconds.,CRITICAL,CRITICAL,True
+FINRA_002,Churning: High frequency buying and selling of same mutual fund in one day.,HIGH,CRITICAL,False
+FINRA_003,"Wash Trade across linked accounts (Husband buys, Wife sells instantly).",CRITICAL,CRITICAL,True
+FINRA_004,Unauthorized trading: Broker uses high-pressure sales tactics.,HIGH,HIGH,True
+FINRA_005,Spoofing: Massive canceled order followed by execution on the other side.,CRITICAL,CRITICAL,True
+OFAC_001,"Structuring deposits just below the $10,000 threshold.",MEDIUM,HIGH,False
+OFAC_002,Wire transfer initiated to an entity on the SDN list.,CRITICAL,CRITICAL,True
+OFAC_003,"5 consecutive ATM withdrawals of $9,500 over 5 days.",HIGH,HIGH,True
+OFAC_004,Trade involving a sanctioned oligarch's known alias.,CRITICAL,CRITICAL,True
+OFAC_005,Suspicious unverified loan approval.,HIGH,HIGH,True
+CLEAN_001,"Normal, legal market making activity and routine email.",CLEAN,CLEAN,True
+CLEAN_002,Standard payroll deposit and vacation email.,CLEAN,CLEAN,True
+CLEAN_003,Client buys index fund and holds.,CLEAN,CLEAN,True
+CLEAN_004,False Positive trigger word test: 'guaranteed' delivery.,CLEAN,LOW,False
+CLEAN_005,False Positive trigger word test: 'inside information' joke.,CLEAN,CLEAN,True

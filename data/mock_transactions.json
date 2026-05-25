@@ -1,0 +1,20 @@
+[
+    {
+        "transaction_id": "LOAN_09648622",
+        "entity_id": "CUST_9999",
+        "type": "LOAN_ORIGINATION",
+        "amount": 2500000.0,
+        "status": "APPROVED",
+        "risk_factors": {"fico_score": 450, "employment": "UNVERIFIED"},
+        "timestamp": "2026-05-25T11:00:00"
+    },
+    {
+        "transaction_id": "TX_SEMANTIC_01",
+        "trader_id": "TRADER_007",
+        "symbol": "NVDA",
+        "quantity": 1000,
+        "price": 900.00,
+        "timestamp": "2026-05-25T14:30:00",
+        "order_type": "MARKET"
+    }
+]

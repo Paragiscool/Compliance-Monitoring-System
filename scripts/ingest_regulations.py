@@ -26,15 +26,15 @@ def ingest_regulations() -> None:
         print("ERROR: No regulation files found. Add .md files to data/regulations/ first.")
         return
 
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key or api_key == "your_openai_api_key_here":
-        print("ERROR: OPENAI_API_KEY is not set in .env. Cannot create embeddings.")
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key or api_key == "your_google_api_key_here":
+        print("ERROR: GOOGLE_API_KEY is not set in .env. Cannot create embeddings.")
         return
 
     # ── Imports (deferred so the script can be imported without heavy deps) ──
     from langchain_community.document_loaders import DirectoryLoader, TextLoader
     from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
-    from langchain_openai import OpenAIEmbeddings
+    from langchain_google_genai import GoogleGenerativeAIEmbeddings
     from langchain_community.vectorstores import Chroma
 
     # ── Load ─────────────────────────────────────────────────────────────────
@@ -75,8 +75,11 @@ def ingest_regulations() -> None:
     print(f"Created {len(final_chunks)} final chunk(s).")
 
     # ── Embed & store ─────────────────────────────────────────────────────────
-    print("Initialising OpenAI embeddings...")
-    embeddings = OpenAIEmbeddings()
+    print("Initialising Google Generative AI embeddings (text-embedding-004)...")
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/gemini-embedding-001",
+        google_api_key=api_key,
+    )
 
     print(f"Writing to ChromaDB at: {CHROMA_DIR}")
     Chroma.from_documents(
