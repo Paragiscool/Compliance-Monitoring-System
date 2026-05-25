@@ -15,20 +15,26 @@ _GOOGLE_KEY_PRESENT = (
     and os.getenv("GOOGLE_API_KEY") != "your_google_api_key_here"
 )
 
+_FP_DB_CACHE = None
+
 def get_false_positives_db():
+    global _FP_DB_CACHE
     if not _GOOGLE_KEY_PRESENT:
         return None
+    if _FP_DB_CACHE is not None:
+        return _FP_DB_CACHE
     from langchain_community.vectorstores import Chroma
     from langchain_google_genai import GoogleGenerativeAIEmbeddings
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/gemini-embedding-001",
         google_api_key=os.getenv("GOOGLE_API_KEY"),
     )
-    return Chroma(
+    _FP_DB_CACHE = Chroma(
         persist_directory=CHROMA_DIR, 
         embedding_function=embeddings,
         collection_name="false_positives"
     )
+    return _FP_DB_CACHE
 
 
 def get_regulatory_tracker_node():

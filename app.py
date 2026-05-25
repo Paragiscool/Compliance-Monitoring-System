@@ -12,7 +12,13 @@ with st.sidebar:
     case_id = st.text_input("Investigation Case ID", value="case_001")
     
     # Update the session state configuration dynamically
-    st.session_state.thread_config = {"configurable": {"thread_id": case_id}}
+    if "active_threads" not in st.session_state:
+        st.session_state.active_threads = {}
+    
+    if case_id not in st.session_state.active_threads:
+        st.session_state.active_threads[case_id] = case_id
+        
+    st.session_state.thread_config = {"configurable": {"thread_id": st.session_state.active_threads[case_id]}}
     
     st.divider()
     st.header("System Controls")
@@ -27,6 +33,14 @@ def load_mock_data():
     return transactions, communications
 
 if run_scan:
+    # Check if the thread already has state (meaning it was run before)
+    _current_state = graph_app.get_state(st.session_state.thread_config)
+    if _current_state and _current_state.values.get("alerts"):
+        import time
+        new_thread = f"{case_id}_run_{int(time.time())}"
+        st.session_state.active_threads[case_id] = new_thread
+        st.session_state.thread_config = {"configurable": {"thread_id": new_thread}}
+
     with st.spinner(f"Agents are scanning ledgers for {case_id}..."):
         transactions, communications = load_mock_data()
         
@@ -107,7 +121,7 @@ if current_state and current_state.values:
                             # 2. Update the state to reflect rejection
                             graph_app.update_state(
                                 st.session_state.thread_config,
-                                {"human_feedback": "REJECTED"},
+                                {"human_feedback": f"REJECTED: {reject_reason}"},
                                 as_node="hitl_placeholder"
                             )
                             # Resume the graph

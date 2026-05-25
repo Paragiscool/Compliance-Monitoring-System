@@ -204,6 +204,19 @@ def report_generator_node(state: ComplianceState) -> Dict[str, Any]:
     escalation = state.get("escalation_status", "NONE")
     flagged    = state.get("flagged_entities", [])
     run_ts     = datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
+    human_feedback = state.get("human_feedback", "")
+
+    if human_feedback and human_feedback.startswith("REJECTED"):
+        reject_reason = human_feedback.replace("REJECTED:", "").strip()
+        report = (
+            "# 🛑 Investigation Rejected by Compliance Officer\n\n"
+            f"**Generated**: {run_ts}\n\n"
+            "This investigation was manually reviewed and dismissed.\n\n"
+            f"**Rejection Reason**: {reject_reason}\n\n"
+            "All underlying alerts have been archived and this entity pattern has been added to the ChromaDB False Positives feedback loop. No further action is required."
+        )
+        print("INFO [ReportGenerator]: Alerts were rejected by human. Bypassing LLM synthesis.")
+        return {"report_content": report}
 
     # ── Fallback template (no LLM) ───────────────────────────────────────────
     def _build_fallback_report() -> str:
