@@ -1,0 +1,64 @@
+# -----------------------------------------
+# Git & Version Control
+# -----------------------------------------
+.git
+.gitignore
+.gitattributes
+
+# -----------------------------------------
+# Secrets & Environment — NEVER bake into image
+# -----------------------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------------------
+# Python Cache & Bytecode
+# -----------------------------------------
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# -----------------------------------------
+# Virtual Environments
+# -----------------------------------------
+venv/
+.venv/
+env/
+.env/
+
+# -----------------------------------------
+# Persistent Data (mounted as volumes at runtime)
+# -----------------------------------------
+checkpoints.sqlite
+checkpoints.sqlite-shm
+checkpoints.sqlite-wal
+chroma_db/
+
+# -----------------------------------------
+# IDE & OS Artifacts
+# -----------------------------------------
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# -----------------------------------------
+# Test & CI Artifacts
+# -----------------------------------------
+.github/
+tests/
+*.log
+*.csv
+validation_results.csv
+compliance_report_output.md
+
+# -----------------------------------------
+# Docker Files (no need to copy into itself)
+# -----------------------------------------
+Dockerfile
+docker-compose.yml
+.dockerignore

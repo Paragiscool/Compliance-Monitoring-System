@@ -26,6 +26,23 @@ from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_excep
 
 load_dotenv()
 
+
+def _load_google_api_key() -> str:
+    """
+    Resolve GOOGLE_API_KEY with a layered strategy:
+      1. Docker secret file (production) — path given by GOOGLE_API_KEY_FILE env var.
+      2. Standard GOOGLE_API_KEY env var (local dev via .env / load_dotenv).
+    This lets the same codebase run identically in both environments.
+    """
+    secret_path = os.getenv("GOOGLE_API_KEY_FILE")
+    if secret_path and os.path.exists(secret_path):
+        with open(secret_path, "r") as fh:
+            key = fh.read().strip()
+        if key:
+            logging.getLogger(__name__).info("API key loaded from Docker secret.")
+            return key
+    return os.getenv("GOOGLE_API_KEY", "")
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -65,7 +82,7 @@ class RobustLLM:
 
         self.llm = ChatGoogleGenerativeAI(
             model=self.model_name,
-            api_key=os.getenv("GOOGLE_API_KEY"),
+            api_key=_load_google_api_key(),
             temperature=effective_temp,
             max_output_tokens=effective_max_tokens,
         )

@@ -1,0 +1,43 @@
+services:
+  compliance-system:
+    build: .
+    container_name: ai-compliance-monitor
+    ports:
+      - "8501:8501"
+    volumes:
+      # Persist the LangGraph SQLite checkpointer (Case Files)
+      - ./checkpoints.sqlite:/app/checkpoints.sqlite
+
+      # Persist the ChromaDB vectorstore (False Positive / Adaptive Learning)
+      - ./chroma_db:/app/chroma_db
+
+    environment:
+      # Ensure real-time terminal logging
+      - PYTHONUNBUFFERED=1
+      # Path where Docker mounts the secret file — read by _load_google_api_key() in llm_wrapper.py
+      - GOOGLE_API_KEY_FILE=/run/secrets/google_api_key
+
+    secrets:
+      - google_api_key
+
+    # Health check: poll Streamlit's built-in health endpoint every 30s.
+    # If it fails 3 times in a row, Docker marks the container as unhealthy.
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Automatically restart the container if it crashes
+    restart: unless-stopped
+
+# ---------------------------------------------------------------------------
+# Docker Secrets — API keys are stored as files, never as plain env vars.
+# For local development: create a file named 'gemini_api_key.txt' in the
+# project root containing ONLY your key string (no quotes, no newline).
+# For production (Docker Swarm / cloud): use external secret management.
+# ---------------------------------------------------------------------------
+secrets:
+  google_api_key:
+    file: ./gemini_api_key.txt
