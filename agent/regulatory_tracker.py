@@ -57,13 +57,8 @@ def get_regulatory_tracker_node():
             f"'{CHROMA_DIR}'. Run scripts/ingest_regulations.py first."
         )
     else:
-        # Only import heavy dependencies when we know they will be used
-        import time
         from langchain_community.vectorstores import Chroma
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
-
-        # Add a slight delay before hitting the embedding API to prevent burst timeouts
-        time.sleep(2)
 
         embeddings = GoogleGenerativeAIEmbeddings(
             model="models/gemini-embedding-2",
@@ -77,6 +72,10 @@ def get_regulatory_tracker_node():
 
     def regulatory_tracker_node(state: ComplianceState) -> Dict[str, Any]:
         print("--- AGENT 1: REGULATORY TRACKER ---")
+        
+        # Anti-burst jitter delay before hitting the embedding API during execution
+        import time
+        time.sleep(2)
 
         if not retriever:
             return {"active_rules": []}

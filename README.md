@@ -8,6 +8,15 @@ This system moves beyond legacy deterministic rules engines by utilizing **ReAct
 
 ---
 
+## 🚀 Latest Updates (May 2026)
+
+* **Enterprise Burst Mitigation ("Jitter"):** Successfully implemented micro-delays (`time.sleep`) across parallel LangGraph agents to stagger API requests, successfully bypassing Google's strict 504 Deadline Exceeded Free-Tier burst limits.
+* **LLM Fleet Upgrades:** Completely migrated all LLM agents from `gemini-2.5-flash` to the high-capacity `gemini-3.1-flash-lite` (500 RPD) to ensure maximum uptime. Embedding models successfully upgraded to `models/gemini-embedding-2`.
+* **LangGraph 1.0.x API Fixes:** Resolved the `_GeneratorContextManager` crash by properly instantiating persistent `SqliteSaver` connections explicitly outside of context-managers for Streamlit global state.
+* **Bare-Metal CI/CD Pipeline:** Rewrote the GitHub Actions `.github/workflows/docker-publish.yml` to use a "Bare Metal Bypass" strategy, dropping third-party dependencies and executing raw Docker bash commands to perfectly circumvent a massive GitHub CDN outage.
+
+---
+
 ## 🏗️ System Architecture
 
 The pipeline utilizes a fan-out/fan-in graph topography, allowing independent monitoring silos to process data concurrently before being fused by a semantic reasoning engine.
@@ -34,6 +43,30 @@ graph TD
 2. **ReAct Tool-Calling (Agent Interactivity):** Communication scanners are equipped with autonomous tools (`query_transactions`). If a suspicious ticker is mentioned in a chat, the agent dynamically halts, queries the transaction ledger, and updates its own context before ruling.
 3. **Semantic Correlation Engine:** Evaluates isolated alerts and resolves cross-entity identities (e.g., linking a tipping spouse to a rogue trader) to generate `CRITICAL META-ALERTS`.
 4. **Adaptive Learning Loop:** Human rejections are embedded into a local `ChromaDB` instance using connection pooling. Agents perform pre-generation similarity searches to dynamically ingest past human feedback, effectively eliminating recurring false positives.
+
+### ⏱️ Enterprise Anti-Burst Jitter Architecture
+
+To safely operate within strict Free-Tier API Rate Limits (preventing `504 Deadline Exceeded` timeouts during parallel execution), the LangGraph agents are staggered using micro-delays (`time.sleep`). This ensures simultaneous requests to the Google GenAI Embedding and LLM endpoints are queued rather than bursting.
+
+```mermaid
+gantt
+    title LangGraph Parallel Node Execution (Jitter Staggering)
+    dateFormat  s
+    axisFormat  %S
+    
+    section Regulatory Tracker
+    Jitter Wait (2s)           :a1, 0, 2s
+    Embed Regulations          :a2, after a1, 2s
+    
+    section Transaction Monitor
+    Jitter Wait (1s)           :b1, 0, 1s
+    Embed False Positives      :b2, after b1, 2s
+    LLM Context Analysis       :b3, after b2, 3s
+    
+    section Comm. Scanner
+    ReAct Tool Chain (LLM)     :c1, 0, 4s
+    Tool Execution             :c2, after c1, 1s
+```
 
 ---
 
