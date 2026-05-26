@@ -58,8 +58,12 @@ def get_regulatory_tracker_node():
         )
     else:
         # Only import heavy dependencies when we know they will be used
+        import time
         from langchain_community.vectorstores import Chroma
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
+
+        # Add a slight delay before hitting the embedding API to prevent burst timeouts
+        time.sleep(2)
 
         embeddings = GoogleGenerativeAIEmbeddings(
             model="models/gemini-embedding-2",
