@@ -77,7 +77,7 @@ def ingest_regulations() -> None:
     # ── Embed & store ─────────────────────────────────────────────────────────
     print("Initialising Google Generative AI embeddings (text-embedding-004)...")
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-001",
+        model="models/text-embedding-004",
         google_api_key=api_key,
     )
 
