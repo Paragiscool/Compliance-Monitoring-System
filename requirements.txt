@@ -1,6 +1,6 @@
 # UI & Orchestration
 streamlit==1.35.0
-langgraph==0.1.6
+langgraph==0.2.28
 langchain==0.2.6
 langchain-community==0.2.6
 
@@ -9,7 +9,7 @@ langchain-google-genai==1.0.6
 google-generativeai==0.5.4
 
 # Memory & Vector Databases
-langgraph-checkpoint-sqlite==1.0.2
+langgraph-checkpoint-sqlite==1.0.4
 langchain-chroma==0.1.1
 chromadb==0.5.3
 
