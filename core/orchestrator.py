@@ -389,16 +389,12 @@ def build_orchestrator(enable_hitl=True):
             )
 
         db_path = "checkpoints.sqlite"
-        try:
-            # Preferred API in langgraph-checkpoint-sqlite 1.0.x
-            memory = SqliteSaver.from_conn_string(db_path)
-        except (AttributeError, TypeError):
-            # Fallback: direct construction with sqlite3 connection
-            import sqlite3
-            conn = sqlite3.connect(db_path, check_same_thread=False)
-            memory = SqliteSaver(conn)
-            if hasattr(memory, "setup"):
-                memory.setup()
+        import sqlite3
+        # Connect explicitly so the connection stays open for the lifetime of the app
+        conn = sqlite3.connect(db_path, check_same_thread=False)
+        memory = SqliteSaver(conn)
+        if hasattr(memory, "setup"):
+            memory.setup()
 
         return workflow.compile(
             checkpointer=memory,
