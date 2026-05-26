@@ -155,6 +155,9 @@ Ensure you populate the 'entities_involved' field with the Entity ID."""),
                     if db:
                         for entity_id, tx_list in grouped_txs.items():
                             tx_str = json.dumps(tx_list)
+                            # Add 1 second jitter to prevent embedding API burst with regulatory_tracker
+                            import time
+                            time.sleep(1)
                             docs = db.similarity_search(tx_str, k=1)
                             for d in docs:
                                 reason = d.metadata.get("human_reason", "")
