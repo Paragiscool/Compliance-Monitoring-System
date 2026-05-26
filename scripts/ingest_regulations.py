@@ -75,9 +75,9 @@ def ingest_regulations() -> None:
     print(f"Created {len(final_chunks)} final chunk(s).")
 
     # ── Embed & store ─────────────────────────────────────────────────────────
-    print("Initialising Google Generative AI embeddings (text-embedding-004)...")
+    print("Initialising Google Generative AI embeddings (gemini-embedding-2)...")
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/text-embedding-004",
+        model="models/gemini-embedding-2",
         google_api_key=api_key,
     )
 

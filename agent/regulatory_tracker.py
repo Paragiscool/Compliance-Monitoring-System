@@ -26,7 +26,7 @@ def get_false_positives_db():
     from langchain_community.vectorstores import Chroma
     from langchain_google_genai import GoogleGenerativeAIEmbeddings
     embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/text-embedding-004",
+        model="models/gemini-embedding-2",
         google_api_key=os.getenv("GOOGLE_API_KEY"),
     )
     _FP_DB_CACHE = Chroma(
@@ -62,7 +62,7 @@ def get_regulatory_tracker_node():
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
         embeddings = GoogleGenerativeAIEmbeddings(
-            model="models/text-embedding-004",
+            model="models/gemini-embedding-2",
             google_api_key=os.getenv("GOOGLE_API_KEY"),
         )
         vectorstore = Chroma(
