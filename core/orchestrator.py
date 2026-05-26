@@ -30,6 +30,18 @@ from typing import Dict, Any, List, Set
 from datetime import datetime
 from dotenv import load_dotenv
 
+# Load environment variables and Docker secret early
+load_dotenv()
+secret_path = os.getenv("GOOGLE_API_KEY_FILE")
+if secret_path and os.path.exists(secret_path):
+    try:
+        with open(secret_path, "r") as fh:
+            key = fh.read().strip()
+        if key:
+            os.environ["GOOGLE_API_KEY"] = key
+    except Exception:
+        pass
+
 from langgraph.graph import StateGraph, END
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
@@ -40,8 +52,6 @@ from core.models import AlertList
 from agent.regulatory_tracker import get_regulatory_tracker_node
 from agent.transaction_monitor import get_transaction_monitor_node
 from agent.communication_scanner import get_communication_scanner_node
-
-load_dotenv()
 
 _GOOGLE_KEY_PRESENT = (
     bool(os.getenv("GOOGLE_API_KEY"))
@@ -378,6 +388,7 @@ def build_orchestrator(enable_hitl=True):
         
         # 2. Initialize the Persistent Checkpointer
         memory = SqliteSaver(conn)
+        memory.setup()
         
         return workflow.compile(
             checkpointer=memory,

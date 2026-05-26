@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from pydantic import BaseModel
 from core.models import Alert, AlertList
 from core.state import ComplianceState
 

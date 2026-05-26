@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from typing import List, Optional, Dict, Any, Union
 from datetime import datetime
 
@@ -79,7 +79,7 @@ class Alert(BaseModel):
 
     def to_state_dict(self) -> Dict[str, Any]:
         """Serialise to a plain dict safe for the LangGraph state (all values JSON-serialisable)."""
-        data = self.model_dump()
+        data = self.dict()
         if isinstance(data.get("timestamp"), datetime):
             data["timestamp"] = data["timestamp"].isoformat()
         return data
@@ -87,5 +87,5 @@ class Alert(BaseModel):
 
 class AlertList(BaseModel):
     """Wrapper so Gemini with_structured_output can return a list of Alert objects."""
-    alerts: List[Alert] = []
+    alerts: List[Alert] = Field(..., description="List of compliance alerts. Can be empty if no violations are found.")
 

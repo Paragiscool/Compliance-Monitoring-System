@@ -7,8 +7,7 @@ from collections import defaultdict
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
-from pydantic import BaseModel
-from core.models import Alert
+from core.models import Alert, AlertList
 from core.state import ComplianceState
 
 load_dotenv()
@@ -17,11 +16,6 @@ _GOOGLE_KEY_PRESENT = (
     bool(os.getenv("GOOGLE_API_KEY"))
     and os.getenv("GOOGLE_API_KEY") != "your_google_api_key_here"
 )
-
-
-class AlertList(BaseModel):
-    """Wrapper so Gemini with_structured_output can return a list of Alert objects."""
-    alerts: List[Alert] = []
 
 
 def _make_deterministic_alert(

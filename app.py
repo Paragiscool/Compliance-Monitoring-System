@@ -1,5 +1,20 @@
+import os
 import streamlit as st
 import json
+from dotenv import load_dotenv
+
+# Load environment variables and Docker secret early
+load_dotenv()
+secret_path = os.getenv("GOOGLE_API_KEY_FILE")
+if secret_path and os.path.exists(secret_path):
+    try:
+        with open(secret_path, "r") as fh:
+            key = fh.read().strip()
+        if key:
+            os.environ["GOOGLE_API_KEY"] = key
+    except Exception:
+        pass
+
 from core.orchestrator import app as graph_app
 
 st.set_page_config(page_title="Compliance HITL", layout="wide")
@@ -32,10 +47,18 @@ def load_mock_data():
         communications = json.load(f)
     return transactions, communications
 
+def safe_get_state(config):
+    try:
+        return graph_app.get_state(config)
+    except KeyError:
+        return None
+    except Exception:
+        return None
+
 if run_scan:
     # Check if the thread already has state (meaning it was run before)
-    _current_state = graph_app.get_state(st.session_state.thread_config)
-    if _current_state and _current_state.values.get("alerts"):
+    _current_state = safe_get_state(st.session_state.thread_config)
+    if _current_state and _current_state.values and _current_state.values.get("alerts"):
         import time
         new_thread = f"{case_id}_run_{int(time.time())}"
         st.session_state.active_threads[case_id] = new_thread
@@ -62,7 +85,7 @@ if run_scan:
 st.subheader(f"Active Alerts: {case_id}")
 
 # This will natively query the SQLite database for the state of the active Case ID!
-current_state = graph_app.get_state(st.session_state.thread_config)
+current_state = safe_get_state(st.session_state.thread_config)
 
 if current_state and current_state.values:
     alerts = current_state.values.get("alerts", [])
@@ -134,3 +157,5 @@ if current_state and current_state.values:
             st.divider()
             st.subheader("Final Audit Report")
             st.markdown(final_report)
+else:
+    st.info("No alerts generated yet. Click 'Run Surveillance Scan' to begin.")

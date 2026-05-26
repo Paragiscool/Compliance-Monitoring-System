@@ -2,6 +2,7 @@
 streamlit==1.35.0
 langgraph==0.0.65
 langchain==0.2.6
+langchain-community==0.2.6
 
 # LLM Integration
 langchain-google-genai==1.0.6
