@@ -15,6 +15,8 @@ This system moves beyond legacy deterministic rules engines by utilizing **ReAct
 * **LangGraph 1.0.x API Fixes:** Resolved the `_GeneratorContextManager` crash by properly instantiating persistent `SqliteSaver` connections explicitly outside of context-managers for Streamlit global state.
 * **Bare-Metal CI/CD Pipeline:** Rewrote the GitHub Actions `.github/workflows/docker-publish.yml` to use a "Bare Metal Bypass" strategy, dropping third-party dependencies and executing raw Docker bash commands to perfectly circumvent a massive GitHub CDN outage.
 
+> 📖 **Read the full engineering post-mortem here:** [docs/troubleshooting_log_may_2026.md](docs/troubleshooting_log_may_2026.md)
+
 ---
 
 ## 🏗️ System Architecture
