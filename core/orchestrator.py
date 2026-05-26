@@ -379,17 +379,30 @@ def build_orchestrator(enable_hitl=True):
 
     if enable_hitl:
         import sqlite3
-        from langgraph.checkpoint.sqlite import SqliteSaver
-        
-        # 1. Establish a connection to a local SQLite file. 
+
+        # LangGraph ≥0.1.x moved SqliteSaver to langgraph.checkpoint.sqlite
+        # Try the new path first, fall back to the old path for compatibility.
+        try:
+            from langgraph.checkpoint.sqlite import SqliteSaver
+        except ImportError:
+            try:
+                from langgraph.checkpoint.sqlite import SqliteSaver  # noqa: F811
+            except ImportError:
+                # Last-resort: use in-memory checkpointer so the app still boots
+                print("WARNING [Orchestrator]: SqliteSaver unavailable — falling back to MemorySaver.")
+                return workflow.compile(
+                    checkpointer=MemorySaver(),
+                    interrupt_before=["report_generator"]
+                )
+
+        # Establish a persistent SQLite connection.
         # check_same_thread=False is required because Streamlit runs multiple threads.
         db_path = "checkpoints.sqlite"
         conn = sqlite3.connect(db_path, check_same_thread=False)
-        
-        # 2. Initialize the Persistent Checkpointer
+
         memory = SqliteSaver(conn)
         memory.setup()
-        
+
         return workflow.compile(
             checkpointer=memory,
             interrupt_before=["report_generator"]

@@ -55,6 +55,32 @@ def safe_get_state(config):
     except Exception:
         return None
 
+def safe_invoke(state, config):
+    """
+    Calls graph_app.invoke() and retries once on a brand-new thread ID if
+    LangGraph raises a KeyError due to a corrupted/stale checkpoint.
+    Returns (success: bool, final_config: dict).
+    """
+    import time
+    try:
+        graph_app.invoke(state, config=config)
+        return True, config
+    except KeyError:
+        # Corrupted checkpoint — auto-generate a clean thread and retry once
+        fresh_thread = f"{case_id}_fresh_{int(time.time())}"
+        fresh_config = {"configurable": {"thread_id": fresh_thread}}
+        st.session_state.active_threads[case_id] = fresh_thread
+        st.session_state.thread_config = fresh_config
+        try:
+            graph_app.invoke(state, config=fresh_config)
+            return True, fresh_config
+        except Exception as e:
+            st.error(f"Scan failed even on a fresh thread: {e}")
+            return False, fresh_config
+    except Exception as e:
+        st.error(f"Scan failed: {e}")
+        return False, config
+
 if run_scan:
     # Check if the thread already has state (meaning it was run before)
     _current_state = safe_get_state(st.session_state.thread_config)
@@ -78,8 +104,9 @@ if run_scan:
         }
         
         # Run the graph. It will save the state to SQLite under the provided case_id
-        graph_app.invoke(initial_state, config=st.session_state.thread_config)
-        st.success(f"Scan Complete! {case_id} is awaiting Human Review.")
+        ok, st.session_state.thread_config = safe_invoke(initial_state, st.session_state.thread_config)
+        if ok:
+            st.success(f"Scan Complete! {case_id} is awaiting Human Review.")
 
 # --- MAIN DISPLAY: Resume & Review ---
 st.subheader(f"Active Alerts: {case_id}")
