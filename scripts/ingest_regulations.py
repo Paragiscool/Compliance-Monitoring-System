@@ -26,10 +26,10 @@ def ingest_regulations() -> None:
         print("ERROR: No regulation files found. Add .md files to data/regulations/ first.")
         return
 
-    api_key = os.getenv("GOOGLE_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY", "")
     if not api_key or api_key == "your_google_api_key_here":
-        print("ERROR: GOOGLE_API_KEY is not set in .env. Cannot create embeddings.")
-        return
+        print("WARNING: GOOGLE_API_KEY not set — will attempt local ONNX embedding fallback.")
+        api_key = ""  # _get_embeddings_with_fallback handles this gracefully
 
     # ── Imports (deferred so the script can be imported without heavy deps) ──
     from langchain_community.document_loaders import DirectoryLoader, TextLoader
@@ -75,11 +75,15 @@ def ingest_regulations() -> None:
     print(f"Created {len(final_chunks)} final chunk(s).")
 
     # ── Embed & store ─────────────────────────────────────────────────────────
-    print("Initialising Google Generative AI embeddings (gemini-embedding-2)...")
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-2",
-        google_api_key=api_key,
-    )
+    print("Initialising embeddings (Gemini with tenacity retry → local ONNX fallback)...")
+    # Import the resilient helper so ingestion survives 504 timeouts
+    import sys, os as _os
+    sys.path.insert(0, BASE_DIR)
+    from agent.regulatory_tracker import _get_embeddings_with_fallback
+    embeddings = _get_embeddings_with_fallback(api_key)
+    if embeddings is None:
+        print("ERROR: Could not initialise any embedding function. Aborting.")
+        return
 
     print(f"Writing to ChromaDB at: {CHROMA_DIR}")
     Chroma.from_documents(

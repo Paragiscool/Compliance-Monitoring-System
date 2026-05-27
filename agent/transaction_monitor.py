@@ -5,6 +5,7 @@ from typing import Dict, Any, List
 from collections import defaultdict
 
 from dotenv import load_dotenv
+from tenacity import RetryError
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from core.models import Alert, AlertList
@@ -116,23 +117,29 @@ Ensure you populate the 'entities_involved' field with the Entity ID."""),
                 )
 
             # Suspicious loan: very high amount + low FICO score + already approved
+            loan_amount = tx.get("loan_amount") or (tx.get("amount") if tx.get("type") == "LOAN_ORIGINATION" else None)
+            # FICO may be top-level or nested under risk_factors
+            risk_factors = tx.get("risk_factors", {})
+            fico_score = tx.get("risk_score") or risk_factors.get("fico_score") or risk_factors.get("credit_score")
+            tx_status = tx.get("status", "")
             if (
-                tx.get("loan_amount")
-                and tx.get("loan_amount", 0) > 1_000_000
-                and tx.get("risk_score", 850) < 500
-                and tx.get("status") == "APPROVED"
+                loan_amount
+                and loan_amount > 1_000_000
+                and fico_score is not None
+                and int(fico_score) < 500
+                and tx_status == "APPROVED"
             ):
                 new_alerts.append(
                     _make_deterministic_alert(
-                        entity_id=tx.get("applicant_id", "UNKNOWN"),
+                        entity_id=tx.get("applicant_id") or tx.get("entity_id", "UNKNOWN"),
                         entity_type="APPLICANT",
                         risk_level="CRITICAL",
                         reason=(
-                            f"Suspicious loan approval: amount ${tx['loan_amount']:,.0f} "
-                            f"with FICO score {tx.get('risk_score')}. "
+                            f"Suspicious loan approval: amount ${loan_amount:,.0f} "
+                            f"with FICO score {fico_score} (employment: {risk_factors.get('employment', 'N/A')}). "
                             "Potential lending fraud or AML red flag."
                         ),
-                        entities_involved=[tx.get("applicant_id", "UNKNOWN")],
+                        entities_involved=[tx.get("applicant_id") or tx.get("entity_id", "UNKNOWN")],
                     )
                 )
 
@@ -149,16 +156,17 @@ Ensure you populate the 'entities_involved' field with the Entity ID."""),
                 # Query ChromaDB for negative constraints
                 negative_constraints = ""
                 try:
-                    from agent.regulatory_tracker import get_false_positives_db
+                    from agent.regulatory_tracker import get_false_positives_db, _similarity_search_with_retry
                     import json
                     db = get_false_positives_db()
                     if db:
                         for entity_id, tx_list in grouped_txs.items():
                             tx_str = json.dumps(tx_list)
-                            # Add 1 second jitter to prevent embedding API burst with regulatory_tracker
-                            import time
-                            time.sleep(1)
-                            docs = db.similarity_search(tx_str, k=1)
+                            try:
+                                docs = _similarity_search_with_retry(db, tx_str, k=1)
+                            except RetryError as re:
+                                print(f"WARNING [TransactionMonitor]: similarity_search exhausted retries for {entity_id}: {re.last_attempt.exception()}")
+                                docs = []
                             for d in docs:
                                 reason = d.metadata.get("human_reason", "")
                                 negative_constraints += f"Warning for {entity_id}: A human previously rejected a similar case because '{reason}'. Consider downgrading the severity.\n"

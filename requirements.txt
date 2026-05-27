@@ -13,6 +13,9 @@ langgraph-checkpoint-sqlite==1.0.4
 langchain-chroma==0.1.1
 chromadb==0.5.3
 
+# Resilience
+tenacity==8.3.0
+
 # Data Handling & Env
 pydantic==2.7.4
 python-dotenv==1.0.1

@@ -96,11 +96,14 @@ if run_scan:
         initial_state = {
             "raw_transactions": transactions,
             "raw_communications": communications,
-            "active_regulatory_rules": [],
+            "active_rules": [],
             "alerts": [],
+            "flagged_entities": [],
+            "escalation_status": "NONE",
             "requires_human_review": False,
             "human_decision": "",
-            "final_audit_report": ""
+            "human_feedback": "",
+            "report_content": "",
         }
         
         # Run the graph. It will save the state to SQLite under the provided case_id
@@ -116,73 +119,88 @@ current_state = safe_get_state(st.session_state.thread_config)
 
 if current_state and current_state.values:
     alerts = current_state.values.get("alerts", [])
-    
+    is_paused   = bool(current_state.next)  # graph is interrupted waiting for resume
+    is_finished = not is_paused and current_state.values.get("report_content")
+
     if not alerts:
-        st.info("No alerts generated yet. Click 'Run Surveillance Scan' to begin.")
+        st.info("✅ Scan complete — no compliance violations detected in this dataset.")
     else:
         # Display the alerts in a clean format
         for alert in alerts:
-            # Highlight META-ALERTs from the Correlation Engine
             if alert.get("risk_level", "LOW") == "CRITICAL":
-                st.error(f"🚨 **{alert.get('risk_level')} ALERT** - {alert.get('source_agent')}\n\n**Entities:** {', '.join(alert.get('entities_involved', []))}\n\n{alert.get('reason')}")
+                st.error(
+                    f"🚨 **{alert.get('risk_level')} ALERT** — {alert.get('source_agent')}\n\n"
+                    f"**Entities:** {', '.join(alert.get('entities_involved', []))}\n\n"
+                    f"{alert.get('reason')}"
+                )
             else:
-                st.warning(f"⚠️ **{alert.get('risk_level')} ALERT** - {alert.get('source_agent')}\n\n**Entities:** {', '.join(alert.get('entities_involved', []))}\n\n{alert.get('reason')}")
+                st.warning(
+                    f"⚠️ **{alert.get('risk_level')} ALERT** — {alert.get('source_agent')}\n\n"
+                    f"**Entities:** {', '.join(alert.get('entities_involved', []))}\n\n"
+                    f"{alert.get('reason')}"
+                )
 
-        # Check if the graph is paused waiting for HITL
-        if current_state.next and "report_generator" in current_state.next:
-            st.divider()
-            st.subheader("Human-In-The-Loop Review")
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                if st.button("✅ Approve & Generate Report", use_container_width=True):
-                    with st.spinner("Resuming graph and generating report..."):
-                        # Update the state to reflect human approval
+    # ── HITL Review Panel ────────────────────────────────────────────────────
+    # Show whenever the graph is paused at report_generator (interrupt_before)
+    if is_paused:
+        st.divider()
+        st.subheader("🧑‍⚖️ Human-In-The-Loop Review")
+        if not alerts:
+            st.info("No violations were detected. You may still approve to generate a clean-bill report, or dismiss the case.")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("✅ Approve & Generate Report", use_container_width=True, key="btn_approve"):
+                with st.spinner("Resuming graph and generating report..."):
+                    graph_app.update_state(
+                        st.session_state.thread_config,
+                        {"human_feedback": "APPROVED"},
+                        as_node="hitl_placeholder"
+                    )
+                    graph_app.invoke(None, config=st.session_state.thread_config)
+                    st.rerun()
+
+        with col2:
+            reject_reason = st.text_input(
+                "Reason for Rejection (Required):",
+                placeholder="e.g., Known corporate transfer...",
+                key="reject_reason_input"
+            )
+            if st.button("❌ Reject & Teach AI", type="secondary", use_container_width=True, key="btn_reject"):
+                if not reject_reason:
+                    st.error("You must provide a reason so the AI can learn from this false positive.")
+                else:
+                    with st.spinner("Dismissing alerts and teaching AI..."):
+                        import uuid
+                        from agent.regulatory_tracker import get_false_positives_db
+                        db = get_false_positives_db()
+                        if db is not None:
+                            for alert in alerts:
+                                context = f"Alert Reason: {alert.get('reason')}"
+                                metadata = {
+                                    "human_reason": reject_reason,
+                                    "source_agent": alert.get("source_agent")
+                                }
+                                db.add_texts(
+                                    texts=[f"{context} | Human Rejection Reason: {reject_reason}"],
+                                    metadatas=[metadata],
+                                    ids=[f"FP_{uuid.uuid4().hex[:8]}"]
+                                )
                         graph_app.update_state(
                             st.session_state.thread_config,
-                            {"human_feedback": "APPROVED"},
+                            {"human_feedback": f"REJECTED: {reject_reason}"},
                             as_node="hitl_placeholder"
                         )
-                        # Resume the graph
                         graph_app.invoke(None, config=st.session_state.thread_config)
                         st.rerun()
-                        
-            with col2:
-                reject_reason = st.text_input("Reason for Rejection (Required):", placeholder="e.g., Known corporate transfer...")
-                if st.button("❌ Reject & Teach AI", type="secondary", use_container_width=True):
-                    if not reject_reason:
-                        st.error("You must provide a reason so the AI can learn from this false positive.")
-                    else:
-                        with st.spinner("Dismissing alerts and teaching AI..."):
-                            # 1. Save the context and reason to ChromaDB
-                            import uuid
-                            from agent.regulatory_tracker import get_false_positives_db
-                            db = get_false_positives_db()
-                            if db is not None:
-                                for alert in alerts:
-                                    context = f"Alert Reason: {alert.get('reason')}"
-                                    metadata = {"human_reason": reject_reason, "source_agent": alert.get("source_agent")}
-                                    db.add_texts(
-                                        texts=[f"{context} | Human Rejection Reason: {reject_reason}"],
-                                        metadatas=[metadata],
-                                        ids=[f"FP_{uuid.uuid4().hex[:8]}"]
-                                    )
-                            
-                            # 2. Update the state to reflect rejection
-                            graph_app.update_state(
-                                st.session_state.thread_config,
-                                {"human_feedback": f"REJECTED: {reject_reason}"},
-                                as_node="hitl_placeholder"
-                            )
-                            # Resume the graph
-                            graph_app.invoke(None, config=st.session_state.thread_config)
-                            st.rerun()
-                        
-        # Display the final report if it exists and graph is finished
-        final_report = current_state.values.get("report_content")
-        if final_report and not current_state.next:
-            st.divider()
-            st.subheader("Final Audit Report")
-            st.markdown(final_report)
+
+    # ── Final Report ─────────────────────────────────────────────────────────
+    final_report = current_state.values.get("report_content")
+    if final_report and is_finished:
+        st.divider()
+        st.subheader("📋 Final Audit Report")
+        st.markdown(final_report)
+
 else:
-    st.info("No alerts generated yet. Click 'Run Surveillance Scan' to begin.")
+    st.info("No scan has been run yet. Click 'Run Surveillance Scan' to begin.")

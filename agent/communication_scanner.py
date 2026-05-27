@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Dict, Any, List
 
 from dotenv import load_dotenv
+from tenacity import RetryError
 from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -58,17 +59,21 @@ def get_communication_scanner_node():
         # Query ChromaDB for negative constraints
         negative_constraints = ""
         try:
-            from agent.regulatory_tracker import get_false_positives_db
+            from agent.regulatory_tracker import get_false_positives_db, _similarity_search_with_retry
             db = get_false_positives_db()
             if db:
                 from collections import defaultdict
                 grouped_comms = defaultdict(list)
                 for c in communications:
                     grouped_comms[c.get("sender_id", "UNKNOWN")].append(c)
-                
+
                 for sender_id, comm_list in grouped_comms.items():
                     comm_str = json.dumps(comm_list)
-                    docs = db.similarity_search(comm_str, k=1)
+                    try:
+                        docs = _similarity_search_with_retry(db, comm_str, k=1)
+                    except RetryError as re:
+                        print(f"WARNING [CommScanner]: similarity_search exhausted retries for {sender_id}: {re.last_attempt.exception()}")
+                        docs = []
                     for d in docs:
                         reason = d.metadata.get("human_reason", "")
                         negative_constraints += f"Warning for {sender_id}: A human previously rejected a similar case because '{reason}'. Consider downgrading the severity.\n"
